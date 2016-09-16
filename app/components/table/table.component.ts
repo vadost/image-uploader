@@ -16,7 +16,7 @@ import {TableService} from "./table.service";
                   <td>{{file.user.id}}</td>
                   <td>{{file.img.name}}</td>
                   <td>{{file.user.name}}</td>
-                  <td>54</td>
+                  <td>{{file.img.checksum}}</td>
                   <td>
                      <div class="btn-group" role="group" aria-label="...">
                         <button type="button" class="btn btn-success" (click)="showModal(file)">View</button>
