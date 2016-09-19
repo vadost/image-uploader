@@ -24,15 +24,36 @@ export class DropService {
         this.files = [];
     }
 
-    readFile(file){
+    getSHA256(file){
+        return new Promise(function(resolve, reject) {
+          let readerForSHA256 = new FileReader();
+          readerForSHA256.onload = function(e) {
+            let rawData = readerForSHA256.result;
+            let sum = sha256(rawData);
+            resolve(sum);
+          };
+          readerForSHA256.readAsArrayBuffer(file);
+      });
+    }
+
+    getBASE64(file){
       return new Promise(function(resolve, reject) {
-        let reader = new FileReader();
-        reader.onload = function(e) {
-          let base64 = reader.result;
-          let sum = sha256(base64);
-          resolve([file, base64, sum]);
+        let readerBASE64 = new FileReader();
+        readerBASE64.onload = function(e) {
+          let base64 = readerBASE64.result;
+          resolve(base64);
         };
-        reader.readAsDataURL(file);
+        readerBASE64.readAsDataURL(file);
+      });
+    }
+
+    readFile(file){
+      let promises = [this.getBASE64(file), this.getSHA256(file)];
+      return new Promise(function(resolve, reject) {
+        Promise.all(promises).then(
+          result => resolve([file, result[0], result[1]]),
+          error => console.error("Error...")
+        );
       });
     }
 
