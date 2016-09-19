@@ -12,11 +12,12 @@ export const authProviders = [
 ];
 
 const APP_ROUTES: Routes = [
-    { path: '', redirectTo: '/signin', pathMatch: 'full' },
-    { path: 'table', component: TableComponent, canActivate: [AuthGuard], },
-    { path: 'blocks', component: BlocksComponent, canActivate: [AuthGuard], },
-    { path: 'upload', component: UploadComponent, canActivate: [AuthGuard], },
-    { path: 'signin', component: SigninComponent }
+    { path: '', pathMatch: 'full', redirectTo: 'upload'},
+    { path: 'table', component: TableComponent, canActivate: [AuthGuard] },
+    { path: 'blocks', component: BlocksComponent, canActivate: [AuthGuard] },
+    { path: 'upload', component: UploadComponent, canActivate: [AuthGuard] },
+    { path: 'signin', component: SigninComponent },
+    { path: '**', redirectTo: '/upload' }
 ];
 
 export const routing = RouterModule.forRoot(APP_ROUTES);

@@ -62,6 +62,8 @@ export class ModalWindowComponent implements OnInit {
     photoURL(file: any) {
         if(file.img) {
             return this.sanitizer.bypassSecurityTrustUrl(file.img.url);
+        }else{
+          return '#';
         }
     }
 }

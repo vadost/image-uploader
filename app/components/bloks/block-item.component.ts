@@ -62,6 +62,12 @@ export class BlockItemComponent{
     }
 
     photoURL(file) {
+
+      if(file){
         return this.sanitizer.bypassSecurityTrustUrl(file.img.url);
+      }else {
+        return '#empty';
+      }
+
     }
 }
