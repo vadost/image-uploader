@@ -1,5 +1,5 @@
 # image-uploader
-Simple Angular 2 app to upload images.
+Simple Angular 2 app to upload images and sha-256 hash generator for file
 
 <b>Installation</b>
 
